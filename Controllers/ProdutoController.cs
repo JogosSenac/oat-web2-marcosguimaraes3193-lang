@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace projetodotnnett.Controllers
 {
-    public class HomeController : Controller
+    public class ProdutoController : Controller
     {
         public IActionResult Index()
         {

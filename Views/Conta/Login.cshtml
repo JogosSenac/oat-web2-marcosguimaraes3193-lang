@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card p-4 shadow" style="width: 360px;">
+        <h3 class="text-center mb-3">Acessar</h3>
+
+        <form method="post">
+            <div class="mb-3">
+                <label>Email</label>
+                <input type="text" name="email" class="form-control" required />
+            </div>
+
+            <div class="mb-3">
+                <label>Senha</label>
+                <input type="password" name="senha" class="form-control" required />
+            </div>
+
+            @if(ViewBag.Erro != null)
+            {
+                <p class="text-danger">@ViewBag.Erro</p>
+            }
+
+            <button type="submit" class="btn btn-primary w-100 mb-2">Entrar</button>
+
+            <a href="/Conta/Registrar" class="btn btn-secondary w-100">
+                Criar uma conta
+            </a>
+        </form>
+    </div>
+</div>
