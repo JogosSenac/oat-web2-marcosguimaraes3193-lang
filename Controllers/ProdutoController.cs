@@ -5,11 +5,13 @@ namespace projetodotnnett.Controllers
 {
     public class ProdutoController : Controller
     {
-        // Lista em memória (igual login)
-        private static List<Produto> produtos = new();
+        // LISTAS EM MEMÓRIA
+        public static List<Produto> produtos = new();
+        public static List<Movimentacao> movimentacoes = new();
+
         private static int ultimoId = 1;
 
-        // LISTA
+        // LISTAR
         public IActionResult Index()
         {
             return View(produtos);
@@ -27,6 +29,15 @@ namespace projetodotnnett.Controllers
         {
             produto.Id = ultimoId++;
             produtos.Add(produto);
+
+            // REGISTRA MOVIMENTAÇÃO
+            movimentacoes.Add(new Movimentacao
+            {
+                ProdutoId = produto.Id,
+                ProdutoNome = produto.Nome,
+                Tipo = "Entrada"
+            });
+
             return RedirectToAction("Index");
         }
 
@@ -43,14 +54,25 @@ namespace projetodotnnett.Controllers
         {
             var p = produtos.FirstOrDefault(x => x.Id == produto.Id);
 
-            p.Nome = produto.Nome;
-            p.Quantidade = produto.Quantidade;
-            p.Preco = produto.Preco;
+            if (p != null)
+            {
+                p.Nome = produto.Nome;
+                p.Quantidade = produto.Quantidade;
+                p.Preco = produto.Preco;
+
+                // REGISTRA MOVIMENTAÇÃO
+                movimentacoes.Add(new Movimentacao
+                {
+                    ProdutoId = p.Id,
+                    ProdutoNome = p.Nome,
+                    Tipo = "Atualização"
+                });
+            }
 
             return RedirectToAction("Index");
         }
 
-        // EXCLUIR - GET (confirmação)
+        // EXCLUIR - GET
         public IActionResult Excluir(int id)
         {
             var produto = produtos.FirstOrDefault(p => p.Id == id);
@@ -62,7 +84,19 @@ namespace projetodotnnett.Controllers
         public IActionResult ExcluirConfirmado(int id)
         {
             var produto = produtos.FirstOrDefault(p => p.Id == id);
-            produtos.Remove(produto);
+
+            if (produto != null)
+            {
+                // REGISTRA MOVIMENTAÇÃO
+                movimentacoes.Add(new Movimentacao
+                {
+                    ProdutoId = produto.Id,
+                    ProdutoNome = produto.Nome,
+                    Tipo = "Saída"
+                });
+
+                produtos.Remove(produto);
+            }
 
             return RedirectToAction("Index");
         }

@@ -1,32 +1,39 @@
 @model List<projetodotnnett.Models.Produto>
 
-<h2 class="mb-3">Produtos</h2>
+<h2 class="mb-4">Produtos</h2>
 
-<a href="/Produto/Criar" class="btn btn-primary mb-3">Cadastrar Produto</a>
+<a href="/Produto/Criar" class="btn btn-success mb-3">+ Novo Produto</a>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Quantidade</th>
-            <th>Preço</th>
-            <th style="width: 180px;">Ações</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach (var p in Model)
-        {
+<div class="card shadow-sm p-3">
+    <table class="table table-hover align-middle">
+        <thead class="table-light">
             <tr>
-                <td>@p.Nome</td>
-                <td>@p.Quantidade</td>
-                <td>R$ @p.Preco</td>
-
-                <td>
-                    <a class="btn btn-sm btn-warning" href="/Produto/Editar/@p.Id">Editar</a>
-                    <a class="btn btn-sm btn-danger" href="/Produto/Excluir/@p.Id">Excluir</a>
-                </td>
+                <th>Nome</th>
+                <th>Quantidade</th>
+                <th>Preço</th>
+                <th class="text-center" style="width: 200px;">Ações</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.Nome</td>
+                    <td>@p.Quantidade</td>
+                    <td>R$ @p.Preco</td>
+
+                    <td class="text-center">
+                        <a class="btn btn-warning btn-sm" href="/Produto/Editar/@p.Id">Editar</a>
+                        <a class="btn btn-danger btn-sm" href="/Produto/Excluir/@p.Id">Excluir</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (!Model.Any())
+    {
+        <div class="text-center text-muted py-3">Nenhum produto cadastrado ainda.</div>
+    }
+</div>
