@@ -1,0 +1,10 @@
+@model projetodotnnett.Models.Produto
+
+<h2>Excluir Produto</h2>
+
+<p>Tem certeza que deseja excluir <strong>@Model.Nome</strong>?</p>
+
+<form method="post" action="/Produto/ExcluirConfirmado/@Model.Id">
+    <button class="btn btn-danger">Sim, excluir</button>
+    <a href="/Produto" class="btn btn-secondary">Cancelar</a>
+</form>

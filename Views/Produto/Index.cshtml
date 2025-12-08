@@ -1,10 +1,8 @@
-@{
-    ViewData["Title"] = "Produtos";
-}
+@model List<projetodotnnett.Models.Produto>
 
 <h2 class="mb-3">Produtos</h2>
 
-<a class="btn btn-primary mb-3" href="/Produto/Criar">Adicionar Produto</a>
+<a href="/Produto/Criar" class="btn btn-primary mb-3">Cadastrar Produto</a>
 
 <table class="table table-striped">
     <thead>
@@ -12,18 +10,23 @@
             <th>Nome</th>
             <th>Quantidade</th>
             <th>Preço</th>
-            <th>Ações</th>
+            <th style="width: 180px;">Ações</th>
         </tr>
     </thead>
+
     <tbody>
-        <tr>
-            <td>Mouse Gamer</td>
-            <td>12</td>
-            <td>R$ 79,90</td>
-            <td>
-                <a class="btn btn-sm btn-warning">Editar</a>
-                <a class="btn btn-sm btn-danger">Excluir</a>
-            </td>
-        </tr>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.Nome</td>
+                <td>@p.Quantidade</td>
+                <td>R$ @p.Preco</td>
+
+                <td>
+                    <a class="btn btn-sm btn-warning" href="/Produto/Editar/@p.Id">Editar</a>
+                    <a class="btn btn-sm btn-danger" href="/Produto/Excluir/@p.Id">Excluir</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
