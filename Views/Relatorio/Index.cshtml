@@ -1,0 +1,25 @@
+@{
+    ViewData["Title"] = "Relatórios";
+}
+
+<h2 class="mb-4">Relatórios do Estoque</h2>
+
+<div class="row g-4">
+
+    <div class="col-md-4">
+        <div class="card shadow-sm p-4 text-center">
+            <h5>Total de Itens Cadastrados</h5>
+            <h2 class="text-primary fw-bold">@ViewBag.TotalItens</h2>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm p-4 text-center">
+            <h5>Valor Total do Estoque</h5>
+            <h2 class="fw-bold">
+                R$ @ViewBag.ValorTotal.ToString("N2").Replace(".", ",")
+            </h2>
+        </div>
+    </div>
+
+</div>

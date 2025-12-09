@@ -9,7 +9,7 @@ namespace projetodotnnett.Controllers
             return View();
         }
 
-        public IActionResult Relatorio()
+        public IActionResult Relatorios()
         {
             return View();
         }
