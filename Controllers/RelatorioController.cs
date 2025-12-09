@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using projetodotnnett.Models;
+using System.Linq;
 
 namespace projetodotnnett.Controllers
 {
@@ -9,7 +10,10 @@ namespace projetodotnnett.Controllers
         {
             var produtos = ProdutoController.produtos;
 
-            int totalItens = produtos.Count;
+            // Soma REAL do estoque
+            int totalItens = produtos.Sum(p => p.Quantidade);
+
+            // Soma total em dinheiro
             decimal valorTotal = produtos.Sum(p => p.Quantidade * p.Preco);
 
             ViewBag.TotalItens = totalItens;
