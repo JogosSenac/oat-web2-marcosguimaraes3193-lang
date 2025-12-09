@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace projetodotnnett.Controllers
+namespace projetodotnnett.Models.Controllers
 {
     public class ContaController : Controller
     {

@@ -1,4 +1,5 @@
-namespace projetodotnnett.Models
+ namespace projetodotnnett.Models
+
 {
     public class Movimentacao
     {

@@ -21,7 +21,8 @@
                 <tr>
                     <td>@p.Nome</td>
                     <td>@p.Quantidade</td>
-                    <td>R$ @p.Preco</td>
+                   <td class="text-end">R$ @p.Preco.ToString("N2").Replace(".", ",")</td>
+
 
                     <td class="text-center">
                         <a class="btn btn-warning btn-sm" href="/Produto/Editar/@p.Id">Editar</a>
