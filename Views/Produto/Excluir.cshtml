@@ -1,14 +1,33 @@
 @model projetodotnnett.Models.Produto
 
-<h2 class="mb-4 text-danger">Excluir Produto</h2>
+@{
+    Layout = "_Layout";
+}
 
-<div class="card shadow-sm p-4">
+<div class="d-flex justify-content-center mt-5">
+    <div class="card shadow-lg border-0 p-4 card-custom" 
+         style="max-width: 550px; width: 100%; border-radius: 18px;">
 
-    <p class="fs-5">Tem certeza que deseja excluir <strong>@Model.Nome</strong>?</p>
+        <h2 class="text-center mb-4 fw-bold text-danger">Excluir Produto</h2>
 
-    <form method="post" action="/Produto/ExcluirConfirmado/@Model.Id">
-        <button class="btn btn-danger">Sim, excluir</button>
-        <a href="/Produto/Index" class="btn btn-secondary">Cancelar</a>
-    </form>
+        <p class="fs-5 text-center">
+            Tem certeza que deseja excluir<br>
+            <strong class="text-dark">@Model.Nome</strong>?
+        </p>
 
+        <form method="post" action="/Produto/ExcluirConfirmado/@Model.Id" class="mt-4">
+
+            <div class="d-flex justify-content-between">
+                <a href="/Produto/Index" class="btn btn-secondary px-4">
+                    Cancelar
+                </a>
+
+                <button class="btn btn-danger px-4 fw-semibold">
+                    Sim, excluir
+                </button>
+            </div>
+
+        </form>
+
+    </div>
 </div>

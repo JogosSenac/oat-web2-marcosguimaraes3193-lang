@@ -47,3 +47,14 @@ button.accept-policy[b-6ax17fhime] {
   white-space: nowrap;
   line-height: 60px;
 }
+.card-custom[b-6ax17fhime] {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.12);
+}
+
+body[b-6ax17fhime] {
+    background: #f4f6fb !important; /* mesmo fundo suave da print */
+}
+

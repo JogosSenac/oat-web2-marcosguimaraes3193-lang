@@ -4,31 +4,34 @@
     Layout = "_Layout";
 }
 
+<div class="d-flex justify-content-center mt-5">
+    <div class="card shadow-lg border-0 p-4 card-custom" style="max-width: 550px; width: 100%; border-radius: 18px;">
+        
+        <h2 class="text-center mb-4 fw-bold">Cadastro de Produto</h2>
 
-<h2 class="mb-4">Cadastro de Produto</h2>
+        <form asp-action="Criar" method="post">
 
-<div class="card card-custom">
+            <div class="mb-3">
+                <label for="Nome" class="form-label fw-semibold">Nome</label>
+                <input type="text" id="Nome" name="Nome" class="form-control" value="@Model?.Nome" required />
+            </div>
 
-    <form asp-action="Criar" method="post">
+            <div class="mb-3">
+                <label for="Quantidade" class="form-label fw-semibold">Quantidade</label>
+                <input type="number" id="Quantidade" name="Quantidade" class="form-control" value="@Model?.Quantidade" required />
+            </div>
 
-        <div class="form-group mb-3">
-            <label for="Nome" class="form-label">Nome</label>
-            <input type="text" id="Nome" name="Nome" class="form-control" value="@Model?.Nome" required />
-        </div>
+            <div class="mb-4">
+                <label for="Preco" class="form-label fw-semibold">Preço</label>
+                <input type="number" step="0.01" id="Preco" name="Preco" class="form-control" value="@Model?.Preco" required />
+            </div>
 
-        <div class="form-group mb-3">
-            <label for="Quantidade" class="form-label">Quantidade</label>
-            <input type="number" id="Quantidade" name="Quantidade" class="form-control" value="@Model?.Quantidade" required />
-        </div>
-
-        <div class="form-group mb-3">
-            <label for="Preco" class="form-label">Preço</label>
-            <input type="number" step="0.01" id="Preco" name="Preco" class="form-control" value="@Model?.Preco" required />
-        </div>
-
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <div class="d-flex justify-content-between">
+                 <button type="submit" class="btn btn-primary">Cadastrar</button>
         <a href="/Produto/Index" class="btn btn-secondary ms-2">Voltar</a>
+            </div>
 
-    </form>
+        </form>
 
+    </div>
 </div>
