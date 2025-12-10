@@ -1,10 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
+using projetodotnnett.Data;
+using projetodotnnett.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace projetodotnnett.Models.Controllers
+namespace projetodotnnett.Controllers
 {
     public class ContaController : Controller
     {
-        private static List<Usuario> usuarios = new();
+        private readonly AppDbContext _context;
+
+        public ContaController(AppDbContext context)
+        {
+            _context = context;
+        }
 
         public IActionResult Login()
         {
@@ -14,7 +22,8 @@ namespace projetodotnnett.Models.Controllers
         [HttpPost]
         public IActionResult Login(string email, string senha)
         {
-            var user = usuarios.FirstOrDefault(u => u.Email == email && u.Senha == senha);
+            var user = _context.Usuarios
+                .FirstOrDefault(u => u.Email == email && u.Senha == senha);
 
             if (user == null)
             {
@@ -25,31 +34,25 @@ namespace projetodotnnett.Models.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        // GET: /Conta/Registrar
         public IActionResult Registrar()
         {
             return View();
         }
 
-        // POST: /Conta/Registrar
         [HttpPost]
         public IActionResult Registrar(string nome, string email, string senha)
         {
-            usuarios.Add(new Usuario
+            var novoUsuario = new Usuario
             {
                 Nome = nome,
                 Email = email,
                 Senha = senha
-            });
+            };
+
+            _context.Usuarios.Add(novoUsuario);
+            _context.SaveChanges();
 
             return RedirectToAction("Login");
         }
-    }
-
-    public class Usuario
-    {
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string Senha { get; set; }
     }
 }
